@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles/login.css">
+</head>
+
+<body>
+    <h1>Entrar</h1>
+    <form class="container__formulario" data-formulario>
+        <fieldset class="formulario__campo">
+            <label class="campo__etiqueta" for="email">E-mail</label>
+            <input name="email" id="email" class="campo__escrita" type="email" minlength="4" required />
+            <span class="mensagem-erro"></span>
+        </fieldset>
+        <fieldset class="formulario__campo">
+            <label class="campo__etiqueta" for="senha">Senha</label>
+            <input name="senha" id="senha" class="campo__escrita" required type="text" minlength="11" maxlength="14" pattern="\d{3}\.?\d{3}\.?\d{3}-?\d{2}" />
+            <span class="mensagem-erro"></span>
+        </fieldset>
+        <a href="./registro.html">Cadastrar</a>
+    </form>
+
+    <script url="./js/login.js"></script>
+</body>
+
+</html>
