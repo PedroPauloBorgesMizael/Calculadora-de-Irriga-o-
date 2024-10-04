@@ -60,6 +60,7 @@
 .termos__texto {
     line-height: 20px;
     display: inline;
+    font-size: 17px;
 }
 
 .campo__etiqueta {

@@ -12,31 +12,40 @@
     <section class="formulario">
         <div class="formulario__centralizar">
             <h1>Registrar</h1>
-            <form class="container__formulario" data-formulario></form>
-            <fieldset class="formulario__campo">
-                <label class="campo__etiqueta" for="nome">Nome</label>
-                <input name="nome" id="nome" class="campo__escrita" type="text" minlength="3" required />
-                <span class="mensagem-erro"></span>
-            </fieldset>
-            <fieldset class="formulario__campo">
-                <label class="campo__etiqueta" for="email">E-mail</label>
-                <input name="email" id="email" class="campo__escrita" type="email" minlength="4" required />
-                <span class="mensagem-erro"></span>
-            </fieldset>
-            <fieldset class="formulario__campo">
-                <label class="campo__etiqueta" for="senha">Senha</label>
-                <input name="senha" id="senha" class="campo__escrita" required type="text" minlength="8" maxlength="20" />
-                <span class="mensagem-erro"></span>
-            </fieldset>
-            <fieldset class="formulario__termos">
-                <input name="termos" class="termos__input" type="checkbox" required>
-                <p class="termos__texto">Li e estou ciente quanto às condições de tratamento dos meus dados conforme descrito na Política de Privacidade do aplicativo.</p>
-                <span class="mensagem-erro"></span>
-            </fieldset>
-            <div>
-                <input value="Registrar" class="formulario__botao" id="registrar" data-botao-enviar type="submit">
-                <span class="mensagem-erro"></span>
-            </div>
+            <form class="container__formulario" data-formulario>
+                <fieldset class="formulario__campo">
+                    <label class="campo__etiqueta" for="nome">Nome</label>
+                    <input name="nome" id="nome" class="campo__escrita" type="text" minlength="3" required />
+                    <span class="mensagem-erro"></span>
+                </fieldset>
+                <fieldset class="formulario__campo">
+                    <label class="campo__etiqueta" for="email">E-mail</label>
+                    <input name="email" id="email" class="campo__escrita" type="email" minlength="4" required />
+                    <span class="mensagem-erro"></span>
+                </fieldset>
+                <fieldset class="formulario__campo">
+                    <label class="campo__etiqueta" for="senha">Senha</label>
+                    <input name="senha" id="senha" class="campo__escrita" required type="text" minlength="8"
+                        maxlength="20" />
+                    <span class="mensagem-erro"></span>
+                </fieldset>
+                <fieldset class="formulario__campo">
+                    <label class="campo__etiqueta" for="senha">Confirme a senha</label>
+                    <input name="confirmarSenha" id="confirmarSenha" class="campo__escrita" required type="text"
+                        minlength="8" maxlength="20" />
+                    <span class="mensagem-erro"></span>
+                </fieldset>
+                <fieldset class="formulario__termos">
+                    <input name="termos" class="termos__input" type="checkbox" required>
+                    <p class="termos__texto">Li e estou ciente quanto às condições de tratamento dos meus dados conforme
+                        descrito na Política de Privacidade do aplicativo.</p>
+                    <span class="mensagem-erro"></span>
+                </fieldset>
+                <div>
+                    <input value="Registrar" class="formulario__botao" id="registrar" data-botao-enviar type="submit">
+                    <span class="mensagem-erro"></span>
+                </div>
+            </form>
         </div>
     </section>
 

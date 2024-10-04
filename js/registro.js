@@ -7,7 +7,8 @@ formulario.addEventListener("submit", (e) => {
     const listaRespostas = {
         "nome": e.target.elements["nome"].value,
         "email": e.target.elements["email"].value,
-        "senha": e.target.elements["senha"].value
+        "senha": e.target.elements["senha"].value,
+        "confirmarSenha": e.target.elements["confirmarSenha"].value
     }
 
     localStorage.setItem("cadastro", JSON.stringify(listaRespostas));
@@ -45,6 +46,9 @@ const mensagens = {
         patternMismatch: "Por favor, preencha uma senha válida.",
         tooShort: "O campo da senha não tem caractéres suficientes."
     },
+    confirmarSenha: {
+        valueMissing: 'O campo de confirmar senha não pode estar vazio.',
+    },
     termos: {
         valueMissing: 'Você deve aceitar nossos termos antes de continuar.',
     }
@@ -56,11 +60,11 @@ function verificaCampo(campo) {
     tiposDeErro.forEach(erro => {
         if (campo.validity[erro]) {
             mensagem = mensagens[campo.name][erro];
-            console.log(mensagem)
         }
     })
-    const mensagemErro = campo.parentNode.querySelector(".mensagem-erro");
+    
     const validadorDeInput = campo.checkValidity();
+    const mensagemErro = campo.parentNode.querySelector(".mensagem-erro");
 
     if(!validadorDeInput) {
         mensagemErro.textContent = mensagem;
@@ -69,3 +73,11 @@ function verificaCampo(campo) {
     }
 }
 
+function verificarSenha() {
+    const senha = document.querySelector("#senha");
+    const confirmarSenha = document.querySelector("#confirmarSenha");
+
+    if(senha !== confirmarSenha) {
+        console.log("As senhas não podem ser diferentes!")
+    }
+}
