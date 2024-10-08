@@ -29,6 +29,7 @@ function obterClima() {
         const tempMax = day.max_temp; 
         const description = day.weather.description;  
         const precip = day.precip || 0;  
+        const pressure = day.pres;
         const iconCode = day.weather.icon;  
         const iconUrl = `https://www.weatherbit.io/static/img/icons/${iconCode}.png`;
 
@@ -38,6 +39,7 @@ function obterClima() {
           <p><strong>Temperatura:</strong> ${tempDay}°C, <strong>Mínima:</strong> ${tempMin}°C, <strong>Máxima:</strong> ${tempMax}°C</p>
           <p><strong>Descrição:</strong> ${description}</p>
           <p><strong>Precipitação:</strong> ${precip} mm</p>
+          <p><strong>Pressão Atmosférica:</strong> ${pressure} mb</p>
           <img src="${iconUrl}" alt="Ícone de clima" />
           <hr />
         `;
