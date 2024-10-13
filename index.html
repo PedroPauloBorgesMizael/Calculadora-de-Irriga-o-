@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Irrigação</title>
+    <link rel="stylesheet" href="./styles/style.css">
+</head>
+
+<body>
+    <h1 class="titulo">Calculadora de irrigação</h1>
+    <section class="calculadora_container">
+        <form>
+            <label for="cultura">Tipo de cultura</label>
+            <div>
+                <select id="kc" name="kc">
+                    <option id="erroCultura">Selecione um tipo de cultura</option>
+                    <option id="soja">Soja</option>
+                    <option id="milho">Milho</option>
+                    <option id="tomate">Tomate</option>
+                    <option id="trigo">Trigo</option>
+                    <option id="cafe">Café</option>
+                </select>
+            </div>
+            <div>
+                <label for="estado">Estado de cultura</label>
+                <select name="tempoDeCultura" id="tempo">
+                    <option id="inicial">Estágio Inicial</option>
+                    <option id="desenvolvimento">Estágio de Desenvolvimento</option>
+                    <option id="Floração">Estágio Reprodutivo</option>
+                    <option id="final">Estágio Final</option>
+                </select>
+            </div>
+            <div>
+                <label for="frequencia">Frequência</label>
+                <input type="number"
+            </div>
+        </form>
+    </section>
+</body>
+
+</html>

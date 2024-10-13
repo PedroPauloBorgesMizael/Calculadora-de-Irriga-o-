@@ -2,68 +2,64 @@ const apiKeyTemperaturaFutura = "713b63ee480140bf9b16a9a9b71c83ed";
 
 // Função para obter a previsão do clima
 function obterClima() {
-    const cidade = document.getElementById('cidadeInput').value;
+  const cidade = document.getElementById('cidadeInput').value;
+  const urlTemperaturaFutura = `https://api.weatherbit.io/v2.0/forecast/daily?city=${cidade}&key=${apiKeyTemperaturaFutura}&days=16&lang=pt`;
 
-    // URL da API
-    const urlTemperaturaFutura = `https://api.weatherbit.io/v2.0/forecast/daily?city=${cidade}&key=${apiKeyTemperaturaFutura}&days=16&lang=pt`;
+  fetch(urlTemperaturaFutura)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Erro ao obter dados da API');
+    }
+    return response.json();
+  })
+  .then(data => {
+    const dadosDaPrevisao = data.data;
+    document.getElementById('temperatura_futura').innerHTML = '';
 
-    fetch(urlTemperaturaFutura)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Erro ao obter dados da API');
-      }
-      return response.json();
-    })
-    .then(data => {
-      // Processar e exibir os dados da previsão
-      const dadosDaPrevisao = data.data;
+    dadosDaPrevisao.forEach(day => {
+      const data = new Date(day.datetime);  
+      const temperaturaMedia = day.temp; 
+      const tempMin = day.min_temp;  
+      const tempMax = day.max_temp; 
+      const descricao = day.weather.description;  
+      const precipitacao = day.precip || 0;  
+      const pressao = day.pres;
+      const velocidadeDoVento = day.wind_spd;
+      const umidade = day.rh;
+      const iconCode = day.weather.icon;  
+      const iconUrl = `https://www.weatherbit.io/static/img/icons/${iconCode}.png`;
 
-      // Limpar conteúdo anterior
-      document.getElementById('temperatura_futura').innerHTML = '';
+      const pressaokPa = pressao / 10;
 
-      // Processar e exibir a previsão do clima para os próximos dias
-      dadosDaPrevisao.forEach(day => {
-        const data = new Date(day.datetime);  
-        const temperaturaMedia = day.temp; 
-        const tempMin = day.min_temp;  
-        const tempMax = day.max_temp; 
-        const descricao = day.weather.description;  
-        const precipitacao = day.precip || 0;  
-        const pressao = day.pres;
-        const velocidadeDoVento = day.wind_spd;
-        const umidade = day.rh;
-        const iconCode = day.weather.icon;  
-        const iconUrl = `https://www.weatherbit.io/static/img/icons/${iconCode}.png`;
+      const etoValor = calcularETo(temperaturaMedia, descricao, pressaokPa, umidade, velocidadeDoVento);
 
-        //Transforma de mb para kPa
-        const pressaokPa = pressao / 10;
+      const dataFormatada = data.toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric' });
 
-        // Exibir dados
-        document.getElementById('temperatura_futura').innerHTML += `
-          <p><strong>Data:</strong> ${data.toDateString()}</p>
-          <p><strong>Temperatura:</strong> ${temperaturaMedia}°C, <strong>Mínima:</strong> ${tempMin}°C, <strong>Máxima:</strong> ${tempMax}°C</p>
-          <p><strong>Descrição:</strong> ${descricao}</p>
-          <p><strong>Precipitação:</strong> ${precipitacao} mm</p>
-          <p><strong>Pressão Atmosférica:</strong> ${pressaokPa} kPa</p>
-          <p><strong>Velocidade do Vento:</strong> ${velocidadeDoVento.toFixed(2)} m/s</p>
-          <p><strong>ETo:</strong> ${ETo.toFixed(2)} mm/dia</p>
-          <p><strong>Umidade Relativa:</strong> ${umidade}%</p>
-          <img src="${iconUrl}" alt="Ícone de clima" />
-          <hr />
-        `;
-      });
-    })
-    .catch(error => {
-      console.error('Erro:', error);
-      document.getElementById('temperatura_futura').innerHTML = `<p>Erro ao obter dados meteorológicos</p>`;
+      document.getElementById('temperatura_futura').innerHTML += `
+        <p><strong>Data:</strong> ${dataFormatada}</p>
+        <p><strong>Temperatura:</strong> ${temperaturaMedia}°C, <strong>Mínima:</strong> ${tempMin}°C, <strong>Máxima:</strong> ${tempMax}°C</p>
+        <p><strong>Descrição:</strong> ${descricao}</p>
+        <p><strong>Precipitação:</strong> ${precipitacao} mm</p>
+        <p><strong>Pressão Atmosférica:</strong> ${pressaokPa} kPa</p>
+        <p><strong>Velocidade do Vento:</strong> ${velocidadeDoVento.toFixed(2)} m/s</p>
+        <p><strong>ETo:</strong> ${etoValor.toFixed(2)} mm/dia</p>
+        <p><strong>Umidade Relativa:</strong> ${umidade}%</p>
+        <img src="${iconUrl}" alt="Ícone de clima" />
+        <hr />
+      `;
     });
+  })
+  .catch(error => {
+    console.error(error); // Exibe o erro no console para ajudar na depuração
+    document.getElementById('temperatura_futura').innerHTML = `<p>Erro ao obter dados meteorológicos</p>`;
+  });
 }
 
 
-function ETo() {
-  let Rn = 15;   
-  const T = temperaturaMedia; 
+function calcularETo(T, descricao, pressaokPa, umidade, velocidadeDoVento) {
+  let Rn;   
 
+  // Define o valor do saldo de radiação diária
   if(descricao == "Nuvens quebradas") {
     Rn = 12.5;
   } else if (descricao == "Nuvens dispersas") {
@@ -77,9 +73,13 @@ function ETo() {
   } else if (descricao == "Nublado") {
     Rn = 7.5;
   } else if (descricao == "Poucas nuvens") {
-    Rn = 17.5
+    Rn = 17.5;
   } else if (descricao == "Aguaceiro fraco") {
-    Rn = match.random 
+    Rn = 8;
+  } else if (descricao == "Tempestade com chuva forte") {
+    Rn = 2;
+  } else if (descricao == "Céu limpo") {
+    Rn = 25;
   }
 
   const G = 0.15 * Rn; 
@@ -93,7 +93,5 @@ function ETo() {
   const gamma = (0.665 * pressaokPa) / 1000; // Constante psicrométrica (kPa/°C)
 
   // Cálculo do ETo
-  const ETo = (0.408 * delta * (Rn - G) + gamma * (900 / (T + 273)) * velocidadeDoVento * (es - ea)) / (delta + gamma * (1 + 0.34 * velocidadeDoVento));
-
-  return ETo;
+  return (0.408 * delta * (Rn - G) + gamma * (900 / (T + 273)) * velocidadeDoVento * (es - ea)) / (delta + gamma * (1 + 0.34 * velocidadeDoVento));
 }
