@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", sans-serif;
+}
+
+body {
+    background-color: #212121;
+}
+
+button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+/* SECAO CABECALHO */
+
+.cabecalho {
+    background-color: #C4C4C4;
+}
+
+.cabecalho__container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    align-items: center;
+}
+
+.cabecalho__item {
+    font-size: 90%;
+    padding: 1% 3%;
+    margin: 1% 0;
+}
+
+.selecionado {
+    background: #a8a8a8;
+    border-radius: 16px;
+}
+
+.icones {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.icones__img {
+    width: 32px;
+}
+
+/* SECAO ALINHANDO TUDO */
+
+.container {
+    /* Voltar aqui */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+    "calculadora tabela"
+    "calculadora desenho-3d";
+    padding: 4% 2em 0 2em;
+    gap: 2em;
+}
+
+.container .calculadora__container {
+    grid-area: calculadora; 
+}
+
+.container .tabela {
+    grid-area: tabela;
+}
+
+/* SECAO CALCULADORA */
+
+.calculadora__container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color: #f2f2f2;
+    height: 100%;
+    gap: 2em;
+}
+
+#kc, #tempo, #xVezes, #frequenciaIrrigacao, #precoAgua, #areaPlantio {
+    color: #454545;
+    border: transparent;
+    border-radius: 4px;
+    background-color: #d6cccb;
+    outline: none;
+    padding: 5px;
+}
+
+input[type=number]::-webkit-inner-spin-button { 
+    -webkit-appearance: none;
+}
+
+.btn__calcular {
+    color: #454545;
+    background-color: #d6cccb;
+    border-radius: 4px;
+    padding: 1em 1.5em;
+}
+
+/* SECAO TABELA */
+
+.tabela {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tabela__titulo {
+    color: #f2f2f2;
+}
+
+table {
+    width: 90%;
+    border-collapse: collapse;  
+    margin-top: 20px;
+    color: #000000;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}

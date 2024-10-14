@@ -34,12 +34,13 @@ function obterClima() {
       const etoValor = calcularETo(temperaturaMedia, descricao, pressaokPa, umidade, velocidadeDoVento);
 
       const dataFormatada = data.toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric' });
+      const dataFormatadaDiaSemana = data.toLocaleDateString('pt-BR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
       document.getElementById('temperatura_futura').innerHTML += `
         <p><strong>Data:</strong> ${dataFormatada}</p>
         <p><strong>Temperatura:</strong> ${temperaturaMedia}°C, <strong>Mínima:</strong> ${tempMin}°C, <strong>Máxima:</strong> ${tempMax}°C</p>
         <p><strong>Descrição:</strong> ${descricao}</p>
-        <p><strong>Precipitação:</strong> ${precipitacao} mm</p>
+        <p><strong>Precipitação:</strong> ${precipitacao.toFixed(2)} mm</p>
         <p><strong>Pressão Atmosférica:</strong> ${pressaokPa} kPa</p>
         <p><strong>Velocidade do Vento:</strong> ${velocidadeDoVento.toFixed(2)} m/s</p>
         <p><strong>ETo:</strong> ${etoValor.toFixed(2)} mm/dia</p>
@@ -50,7 +51,7 @@ function obterClima() {
     });
   })
   .catch(error => {
-    console.error(error); // Exibe o erro no console para ajudar na depuração
+    console.error(error);
     document.getElementById('temperatura_futura').innerHTML = `<p>Erro ao obter dados meteorológicos</p>`;
   });
 }

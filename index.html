@@ -9,35 +9,119 @@
 </head>
 
 <body>
-    <h1 class="titulo">Calculadora de irrigação</h1>
-    <section class="calculadora_container">
-        <form>
-            <label for="cultura">Tipo de cultura</label>
-            <div>
-                <select id="kc" name="kc">
-                    <option id="erroCultura">Selecione um tipo de cultura</option>
-                    <option id="soja">Soja</option>
-                    <option id="milho">Milho</option>
-                    <option id="tomate">Tomate</option>
-                    <option id="trigo">Trigo</option>
-                    <option id="cafe">Café</option>
-                </select>
+    <header class="cabecalho">
+
+        <nav class="cabecalho__container">
+
+            <button id="calculadoraSecao" class="cabecalho__item selecionado">Calculadora Irrigação</button>
+            <button id="meteorologiaSecao" class="cabecalho__item">Informações Meteorológicas</button>
+            <button id="BDSecao" class="cabecalho__item">Banco de Dados</button>
+            <button id="ajudaSecao" class="cabecalho__item">Ajuda</button>
+
+            <div class="icones">
+                <button>
+                    <a href="./login.html">
+                        <img src="./img/logout-512.webp" alt="Sair da Conta" class="icones__img">
+                    </a>
+                </button>
+                <button>
+                    <img src="./img/account_circle.svg" alt="Usuário" class="icones__img">
+                </button>
             </div>
-            <div>
-                <label for="estado">Estado de cultura</label>
-                <select name="tempoDeCultura" id="tempo">
-                    <option id="inicial">Estágio Inicial</option>
-                    <option id="desenvolvimento">Estágio de Desenvolvimento</option>
-                    <option id="Floração">Estágio Reprodutivo</option>
-                    <option id="final">Estágio Final</option>
-                </select>
+
+        </nav>
+
+    </header>
+
+    <div id="hiddenPaginaPrincipal" hidden>
+        <section class="container">
+
+            <div class="calculadora__container">
+
+                <h1 class="titulo">Calculadora de irrigação</h1>
+
+                <div>
+                    <label for="cultura">Tipo de cultura</label>
+                    <select id="kc" name="cultura">
+                        <option id="erroCultura">Selecione um tipo de cultura</option>
+                        <option id="soja">Soja</option>
+                        <option id="milho">Milho</option>
+                        <option id="tomate">Tomate</option>
+                        <option id="trigo">Trigo</option>
+                        <option id="cafe">Café</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="estado">Estado de cultura</label>
+                    <select name="estado" id="tempo">
+                        <option id="erroCultura">Selecione o Estado da cultura</option>
+                        <option id="inicial">Estágio Inicial</option>
+                        <option id="desenvolvimento">Estágio de Desenvolvimento</option>
+                        <option id="Floração">Estágio Reprodutivo</option>
+                        <option id="final">Estágio Final</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="frequencia">Frequência</label>
+                    <input type="number" id="xVezes" name="frequencia" required>
+                    <select name="frequencia" id="frequenciaIrrigacao">
+                        <option value="diario">Diário</option>
+                        <option value="semanal">Semanal</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="precoAgua">Custo da água (m³)</label>
+                    <input type="number" id="precoAgua" name="precoAgua" required>
+                </div>
+
+                <div>
+                    <label for="areaPlantio">Área de plantio (ha)</label>
+                    <input type="number" id="areaPlantio" name="areaPlantio" required>
+                </div>
+
+                <button class="btn__calcular" onclick="calcular()">Calcular</button>
+
             </div>
-            <div>
-                <label for="frequencia">Frequência</label>
-                <input type="number"
+
+            <div class="tabela">
+                <h2 class="tabela__titulo">Tabela de Gastos</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th colspan="2">Água Utilizada</th>
+                        </tr>
+                        <tr>
+                            <th>Litros</th>
+                            <th>m³</th>
+
+                        </tr>
+                        <tr>
+                            <th colspan="2">Gasto(R$)</th>
+                        </tr>
+                        <tr>
+                            <th colspan="2" id="tmp">Tempo Médio (min)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
             </div>
-        </form>
-    </section>
+
+        </section>
+    </div>
+
+    <div id="hiddenMeteorologia">
+        <section class="container__meteorologia">
+            <!--Colocar no JS-->
+            <div class="dias__futuro" id="barraDias"></div>
+            <div class="dados__meteorologia" id="dadosTempo"></div>
+
+        </section>
+    </div>
 </body>
 
 </html>
