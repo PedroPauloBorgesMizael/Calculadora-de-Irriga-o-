@@ -35,19 +35,6 @@ function obterClima() {
 
       const dataFormatada = data.toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric' });
       const dataFormatadaDiaSemana = data.toLocaleDateString('pt-BR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-
-      document.getElementById('temperatura_futura').innerHTML += `
-        <p><strong>Data:</strong> ${dataFormatada}</p>
-        <p><strong>Temperatura:</strong> ${temperaturaMedia}°C, <strong>Mínima:</strong> ${tempMin}°C, <strong>Máxima:</strong> ${tempMax}°C</p>
-        <p><strong>Descrição:</strong> ${descricao}</p>
-        <p><strong>Precipitação:</strong> ${precipitacao.toFixed(2)} mm</p>
-        <p><strong>Pressão Atmosférica:</strong> ${pressaokPa} kPa</p>
-        <p><strong>Velocidade do Vento:</strong> ${velocidadeDoVento.toFixed(2)} m/s</p>
-        <p><strong>ETo:</strong> ${etoValor.toFixed(2)} mm/dia</p>
-        <p><strong>Umidade Relativa:</strong> ${umidade}%</p>
-        <img src="${iconUrl}" alt="Ícone de clima" />
-        <hr />
-      `;
     });
   })
   .catch(error => {
@@ -56,6 +43,7 @@ function obterClima() {
   });
 }
 
+let EToGlobal
 
 function calcularETo(T, descricao, pressaokPa, umidade, velocidadeDoVento) {
   let Rn;   
@@ -86,13 +74,17 @@ function calcularETo(T, descricao, pressaokPa, umidade, velocidadeDoVento) {
   const G = 0.15 * Rn; 
 
   // Cálculo de es e ea
-  const es = 0.6108 * Math.exp((17.27 * T) / (T + 237.3)); // Pressão de vapor de saturação (kPa)
-  const ea = (umidade / 100) * es; // Pressão de vapor atual (kPa)
+  const es = 0.6108 * Math.exp((17.27 * T) / (T + 237.3));
+  const ea = (umidade / 100) * es; 
 
   // Cálculo de Δ e γ
-  const delta = (4098 * es) / Math.pow(T + 237.3, 2); // Inclinação da curva de saturação de pressão de vapor (kPa/°C)
-  const gamma = (0.665 * pressaokPa) / 1000; // Constante psicrométrica (kPa/°C)
+  const delta = (4098 * es) / Math.pow(T + 237.3, 2); 
+  const gamma = (0.665 * pressaokPa) / 1000; 
 
   // Cálculo do ETo
-  return (0.408 * delta * (Rn - G) + gamma * (900 / (T + 273)) * velocidadeDoVento * (es - ea)) / (delta + gamma * (1 + 0.34 * velocidadeDoVento));
+  const ETo = (0.408 * delta * (Rn - G) + gamma * (900 / (T + 273)) * velocidadeDoVento * (es - ea)) / (delta + gamma * (1 + 0.34 * velocidadeDoVento));
+
+  EToGlobal = ETo;
+  
+  return ETo;
 }

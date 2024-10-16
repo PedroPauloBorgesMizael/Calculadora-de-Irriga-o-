@@ -82,7 +82,7 @@ button {
     gap: 2em;
 }
 
-#kc, #tempo, #xVezes, #frequenciaIrrigacao, #precoAgua, #areaPlantio {
+#kc, #tempo, #xVezes, #frequenciaIrrigacao, #precoAgua, #areaPlantio, #cidadeInput {
     color: #454545;
     border: transparent;
     border-radius: 4px;
@@ -132,4 +132,116 @@ th, td {
 
 th {
     background-color: #f2f2f2;
+}
+
+
+/* PAGINA INFORMACOES METEOROLOGICAS */ 
+
+/*SECAO BARRA DE CLIMA */
+
+.dias__futuro {
+    display: flex;
+    border-bottom: 2px solid #f2f2f2;
+}
+
+.btn__clima {
+    display: flex;
+    color: #f2f2f2;
+    padding: 5px;
+    gap: 5px;
+}
+
+.btn__selecionado {
+    background-color: #454545;
+}
+
+.icone__clima {
+    width: 48px;
+}
+
+hr {
+    height: 100%;
+}
+
+/* SECAO LOCALIDADE */
+
+.dados__meteorologia {
+    color: #f2f2f2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.localidade__data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+}
+
+.localidade {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    gap: 2em;
+}
+
+.icon__localidade {
+    width: 72px;
+}
+
+/* SECAO CLIMA E TEMPERATURA */
+
+.temperatura {
+    display: flex;
+    gap: 7em;
+    padding: 2em;
+}
+
+.clima__atual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.icone-G {
+    width: 120px;
+}
+
+.alinhar__temperatura__atual {
+    display: flex;
+    align-items: center;
+}
+
+.temperatura__atual {
+    display: flex;
+}
+
+.temperatura__atual__texto {
+    font-size: 60px;
+}
+
+.temperatura__maxmin {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+}
+
+.barra__divisao {
+width: 100%;
+}
+
+/* SECAO CLIMA DETALHADO */
+
+.informacoes__detalhadas {
+    display: flex;
+    gap: 9em;
+}
+
+.item__detalhado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
 }
