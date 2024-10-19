@@ -1,30 +1,54 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <link rel="stylesheet" href="./styles/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Document</title>
 </head>
-
 <body>
-    <h1>Entrar</h1>
-    <form class="container__formulario" data-formulario>
-        <fieldset class="formulario__campo">
-            <label class="campo__etiqueta" for="email">E-mail</label>
-            <input name="email" id="email" class="campo__escrita" type="email" minlength="4" required />
-            <span class="mensagem-erro"></span>
-        </fieldset>
-        <fieldset class="formulario__campo">
-            <label class="campo__etiqueta" for="senha">Senha</label>
-            <input name="senha" id="senha" class="campo__escrita" required type="text" minlength="11" maxlength="14" pattern="\d{3}\.?\d{3}\.?\d{3}-?\d{2}" />
-            <span class="mensagem-erro"></span>
-        </fieldset>
-        <a href="./registro.html">Cadastrar</a>
-    </form>
+    
+    <div class="container" id="container">
+        <div class="form__container registrar">
+            <form>
+                <h1>Crie sua Conta</h1>
+                <input type="text" placeholder="Nome">
+                <input type="email" placeholder="Email">
+                <input type="password" placeholder="Senha">
+                <button>Registre-se</button>
+            </form>
+        </div>
 
-    <script url="./js/login.js"></script>
+        <div class="form__container entrar">
+            <form>
+                <h1>Entre</h1>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Senha" required>
+                <button>
+                    <a class="btn__entra" href="#">Entrar</a>
+                </button>
+            </form>
+        </div>
+
+        <div class="alternar__container">
+            <div class="alternar">
+                <div class="alternar__painel alternar__esquerda">
+                    <h1>Bem-vindo de volta</h1>
+                    <p>Insira seus dados pessoais para usar todos os recursos do site.</p>
+                    <button class="hidden" id="login">Entre</button>
+                </div>
+                <div class="alternar__painel alternar__direita">
+                    <h1>Olá, Tudo bem?</h1>
+                    <p>Registre-se com seus dados pessoais para usar todos os recursos do site.</p>
+                    <button class="hidden" id="registro">Registre-se</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/dinamicidadeLogin.js"></script>
+    <script src="./js/login.js"></script>
+    <script src="./js/server.js"></script>
 </body>
-
 </html>
