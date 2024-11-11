@@ -57,7 +57,7 @@
                 <option value="Trigo">Trigo</option>
                 <option value="Café">Café</option>
               </select>
-              <div class="alerta__cultura"></div>
+              <div class="alerta__cultura alerta"></div>
             </div>
 
             <div class="container__itens">
@@ -72,7 +72,7 @@
                 </option>
                 <option value="Estágio Final">Estágio Final</option>
               </select>
-              <div class="alerta__estagio"></div>
+              <div class="alerta__estagio alerta"></div>
             </div>
 
             <div class="container__itens">
@@ -86,22 +86,7 @@
                 <option value="Aspersão">Aspersão</option>
                 <option value="Microaspersão">Microaspersão</option>
               </select>
-            </div>
-
-            <div class="container__itens">
-              <label for="frequencia">Frequência</label>
-              <div>
-                <input type="number" id="xVezes" name="frequencia" required />
-                <select name="frequencia" id="frequenciaIrrigacao">
-                  <option value="diario">Diário</option>
-                  <option value="semanal">Semanal</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="container__itens">
-              <label for="precoAgua">Custo da água (m³)</label>
-              <input type="number" id="precoAgua" name="precoAgua" required />
+              <div class="alerta__sistema alerta"></div>
             </div>
 
             <div class="container__itens">
@@ -112,6 +97,24 @@
                 name="areaPlantio"
                 required
               />
+              <div class="alerta__area alerta"></div>
+            </div>
+
+            <div class="container__itens">
+              <label for="vazaoSistema">Área de plantio (ha)</label>
+              <input
+                type="number"
+                id="vazaoSistema"
+                name="vazaoSistema"
+                required
+              />
+              <div class="alerta__vazao alerta"></div>
+            </div>
+
+            <div class="container__itens">
+              <label for="precoAgua">Custo da água (m³)</label>
+              <input type="number" id="precoAgua" name="precoAgua" required />
+              <div class="alerta__custo alerta"></div>
             </div>
 
             <div class="ocultar__real">
@@ -124,7 +127,7 @@
                     placeholder="Digite o nome da cidade"
                     required
                   />
-                  <div id="alertaLocalidade"></div>
+                  <div class="alerta__localidade alerta"></div>
                 </div>
               </div>
             </div>
@@ -140,6 +143,27 @@
                   type="number"
                   id="temperaturaAvancada"
                   placeholder="Insira a temperatura atual"
+                />
+              </div>
+
+              <div class="container__itens">
+                <label for="EficienciaS"
+                  >Eficiencia do Sistema de Irrigação (°C)</label
+                >
+                <input
+                  type="number"
+                  id="EficienciaS"
+                  placeholder="Insira a eficiência do sistema"
+                />
+              </div>
+              <div class="container__itens">
+                <label for="CoeficienteCultura"
+                  >Coeficiente de Cultura (Kc)</label
+                >
+                <input
+                  type="number"
+                  id="CoeficienteCultura"
+                  placeholder="Insira o coeficiente da cultura"
                 />
               </div>
 
@@ -189,13 +213,17 @@
                   placeholder="Informe o fluxo total de calor diário no solo"
                 />
               </div>
+
+              <div class="container__itens">
+                <label for="CapacidadeDeCampo"></label>
+              </div>
             </div>
           </div>
           <div class="botoes">
             <button
               class="btn__calcular"
               id="btnCalculadora"
-              onclick="obterPrevisaoClima()"
+              onclick="obterPrevisaoClima(), validarFormularioCompleto()"
             >
               Calcular
             </button>

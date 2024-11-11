@@ -90,7 +90,6 @@ button {
 
 #kc,
 #tempo,
-#xVezes,
 #frequenciaIrrigacao,
 #precoAgua,
 #areaPlantio,
@@ -101,7 +100,9 @@ button {
 #velocidadeVentoAvancada,
 #radiacaoDiariaAvancada,
 #fluxoCalorAvancada,
-#sistema {
+#sistema,
+#EficienciaS,
+#CoeficienteCultura {
   color: #454545;
   border: transparent;
   border-radius: 4px;
@@ -110,10 +111,7 @@ button {
   padding: 5px;
 }
 
-.alerta__estagio,
-.alerta__cultura,
-#alertaLocalidade,
-.alerta__meteorologia {
+.alerta {
   color: red;
 }
 
@@ -238,12 +236,12 @@ th {
 
 .dias__futuro {
   display: flex;
-  border-bottom: 2px solid #f2f2f2;
+  border-bottom: 2px solid #000;
 }
 
 .btn__clima {
   display: flex;
-  color: #f2f2f2;
+  color: #000;
   padding: 5px;
   gap: 5px;
 }
@@ -258,12 +256,13 @@ th {
 
 hr {
   height: 100%;
+  background-color: #454;
 }
 
 /* SECAO LOCALIDADE */
 
 .dados__meteorologia {
-  color: #f2f2f2;
+  color: #000;
   display: flex;
   flex-direction: column;
   align-items: center;
