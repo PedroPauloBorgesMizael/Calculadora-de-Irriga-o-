@@ -87,17 +87,9 @@ function validarFormularioCompleto() {
 
   const sistemaValido = validarSelecao(
     "sistema",
-    "Selecione um Sistema de Irrigação.",
+    "Selecio um Sistema de Irrigação",
     ".alerta__sistema",
     "Insira um sistema de irrigação válido."
-  );
-
-  const frequenciaValida = validarCampoNumero(
-    "xVezes",
-    ".alerta__frequencia",
-    "Informe um número entre 0 e 10.",
-    0,
-    10
   );
 
   const custoValido = validarCampoNumero(
@@ -106,14 +98,6 @@ function validarFormularioCompleto() {
     "Informe um valor entre 1 e 60.",
     1,
     60
-  );
-
-  const vazaoValido = validarCampoNumero(
-    "vazaoSistema",
-    ".alerta__vazao",
-    "Informe um valor entre 1 e 400.",
-    1,
-    400
   );
 
   const areaValida = validarCampoNumero(
@@ -130,7 +114,7 @@ function validarFormularioCompleto() {
     "Insira o nome de uma cidade válida."
   );
 
-  return culturaValida && estadoValido && sistemaValido && frequenciaValida && custoValido && areaValida && cidadeValida;
+  return culturaValida && estadoValido && sistemaValido && custoValido && areaValida && cidadeValida;
 }
 
 document.querySelectorAll("input, select").forEach((campo) => {
