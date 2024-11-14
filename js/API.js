@@ -1,7 +1,7 @@
 let dadosDaPrevisaoGlobal = [];
 
 function obterPrevisaoClima() {
-  const apiKeyTemperaturaFutura = "XXXXX";
+  const apiKeyTemperaturaFutura = "713b63ee480140bf9b16a9a9b71c83ed"; //Chave reserva: 31d36f703e294ab4b494b8c3403fb9dd
   const cidade = document.getElementById("cidadeInput").value;
 
   const urlTemperaturaFutura = `https://api.weatherbit.io/v2.0/forecast/daily?city=${cidade}&key=${apiKeyTemperaturaFutura}&days=16&lang=pt`;
